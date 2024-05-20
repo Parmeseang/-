@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Viewer</title>
+  <link rel="stylesheet" href="css/test.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-o5v5qI/+LzPEZGtVjAOGkInMX7hU2JpC+Hlzh56jpIpVZyrV4qkjI3UzZKfqb40O2BSNsMDCuTRdXhK7zA5N/w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+  <div class="gallery">
+    <img src="images/products/1.png" alt="1" onclick="openModal('images/products/1.png',1)" id="myImage1"/>
+    <img src="images/products/2.png" alt="2" onclick="openModal('images/products/2.png',2)" id="myImage2"/>
+    <img src="images/products/3.png" alt="3" onclick="openModal('images/products/3.png',3)" id="myImage3"/>
+    <img src="images/products/4.png" alt="4" onclick="openModal('images/products/4.png',4)" id="myImage4"/>
+    <img src="images/products/5.png" alt="5" onclick="openModal('images/products/5.png',5)" id="myImage5"/>
+    <span>+5</span>
+    <div class="devis">
+    <img src="images/products/6.png" alt="6" onclick="openModal('images/products/6.png',6)" id="myImage6"/>
+    <img src="images/products/7.png" alt="7" onclick="openModal('images/products/7.png',7)" id="myImage7"/>
+    <img src="images/products/8.png" alt="8" onclick="openModal('images/products/8.png',8)" id="myImage8"/>
+    <img src="images/products/9.png" alt="9" onclick="openModal('images/products/9.png',9)" id="myImage9"/>
+    <img src="images/products/10.jpg" alt="10" onclick="openModal('images/products/10.jpg',10)" id="myImage10"/>
+  </div>
+  </div>
+
+  <div id="myModal" class="modal">
+    <div id="go" onclick="minus()"> </div>
+    <div id="back"  onclick="plus()"> </div>
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modalImage">
+    
+  </div>
+
+
+  <script src="js/test.js"></script>
+</body>
+</html>
+
