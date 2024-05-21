@@ -24,11 +24,15 @@ nav ul li{
 }
 nav ul li a{
     text-decoration: none;
+    color: black;
 }
 
 nav p {
     width: 60px;
     padding:18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .box-nave{
@@ -40,24 +44,25 @@ nav p {
     font-size: 25px;
     padding: 18px;
     display: none;
+    margin-right: 10px;
 }
 
 .dropdown{
     position: absolute;
     right: 10px;
-    height: 140px;
-    width: 200px;
+    height: 240px;
+    width: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(198, 197, 228);
+    background-color: rgba(198, 197, 228, 0.24);
     backdrop-filter: blur(5px);
     border-radius:7px ;
     display: none;
 }
 
 .dropdown li {
-    padding: 8px 0 0 0 ;
+    padding: 22px 0 0 0 ;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -65,17 +70,126 @@ nav p {
 }
 .dropdown li a{
     text-decoration: none;
+    color: black;
+    font-size: 20px;
 }
 .chang{
     display: block;
 }
+.conteaner{
+    height: 100dvh;
+    width: 100%;
+    background-color: rgb(155, 165, 255);
+}
+.sec1{
+    /* background-color: aqua; */
+    height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
+.p-61{
+    background-color: azure;
+    width: 500px;
+    margin: 0 100px;
+}
+.p-61 h1{
+    text-align: center;
+}
+.img-room{
+    margin: 60px 100px 0 0;
+    width: 650px;
+    height: 650px;
+    background-color: black;
+    border-radius: 50%;
+}
 
+form {
+    padding: 50px;
+    margin: 0 auto 0 auto;
+    width: 500px;
+    background-color: #ffffff;
+    box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.2);
+}
+#myButton{
+    width: 150px;
+    height: 50px;
+    border: none;
+    background-color: #ffffff;
+    box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.2);
+}
+/* ส่วนของForm */
+
+.input-container {
+    position: relative;
+    margin: 50px auto;
+    width: 80%;
+  }
+  
+  .input-container input[type="text"] {
+    font-size: 20px;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    padding: 3px 0;
+    background-color: transparent;
+    outline: none;
+  }
+  
+  .input-container .label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #ccc;
+    transition: all 0.3s ease;
+    pointer-events: none;
+  }
+  
+  .input-container input[type="text"]:focus ~ .label,
+  .input-container input[type="text"]:valid ~ .label {
+    top: -20px;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .input-container .underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background-color: #333;
+    transform: scaleX(0);
+    transition: all 0.3s ease;
+  }
+  
+  .input-container input[type="text"]:focus ~ .underline,
+  .input-container input[type="text"]:valid ~ .underline {
+    transform: scaleX(1);
+  }
 @media only screen and (max-width: 1000px) {
+    .conteaner{
+        height: 100dvh;
+        width: 100%;
+        background-color: rgb(255, 255, 255);
+    }
     nav ul li{
         display: none;
     }
     .btn-bar{
         display: block;
+    }
+    .sec1{
+        background-color: rgb(255, 255, 255);
+        display: grid;
+        margin: 100px auto 0 auto;
+        justify-content: center;
+        align-items: center;
+    }
+    .img-room{
+        margin: 60px auto 0 auto;
+        width: 400px;
+        height: 400px;
     }
 }

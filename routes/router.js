@@ -24,8 +24,23 @@ const multer = require('multer')
 router.get('/',(req,res)=>{
  
     res.render('index')
-  
+})
 
+router.get('/create',(req,res)=>{
+ 
+    res.render('create')
+})
+router.get('/myprofile',(req,res)=>{
+ 
+    res.render('myprofile')
+})
+router.get('/profileroom',(req,res)=>{
+ 
+    res.render('profileroom')
+})
+router.get('/edit',(req,res)=>{
+ 
+    res.render('edit')
 })
 
 module.exports = router

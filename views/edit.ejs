@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>edit</title>
+    <link rel="stylesheet" href="css/anime.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <%- include('navbar')%>
+    <div class="conteaner">
+        <form class="form" method="POST" action="/insert">
+            <h1>Edit profile</h1>
+            <div class="input-container">
+                <input required="" id="input" type="text"  name="name" />
+                <label class="label" for="input">ชื่อ</label>
+                <div class="underline"></div>
+            </div>
+            <div class="input-container">
+                <input required="" id="input" type="text" name="gender"/>
+                <label class="label" for="input">เพศ</label>
+                <div class="underline"></div>
+              </div>
+              <div class="input-container">
+                <input required="" id="input" type="text" name="age"/>
+                <label class="label" for="input">อายุ</label>
+                <div class="underline"></div>
+              </div>
+              <div class="input-container">
+                <input required="" id="input" type="text" name="uwant"/>
+                <label class="label" for="input">มหาวัทลัยที่อยากเข้า</label>
+                <div class="underline"></div>
+              </div>
+              <div class="input-container">
+                <input required="" id="input" type="text" name="kwant"/>
+                <label class="label" for="input">คณะที่อยากเข้า</label>
+                <div class="underline"></div>
+              </div>
+              <div class="input-container">
+                <input required="" id="input" type="text" name="myintro"/>
+                <label class="label" for="input">คำอธิบายตัวเอง</label>
+                <div class="underline"></div>
+              </div>
+            <div class="input-container last-chil">
+                <input required="" id="input" type="text" name="warpig"/>
+                <label class="label" for="input">วาร์ป ig</label>
+                <div class="underline"></div>
+              </div>
+              <div class="d-flex ">
+              <button type="submit" id="myButton">
+                SEND
+              </button>
+            </div>
+            </form>
+</div>
+</body>
+    <script src="js/drop.js"></script>
+</html>
