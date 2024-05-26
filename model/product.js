@@ -11,12 +11,17 @@ mongoose.connect(dburl, {
     console.error('Error connecting to MongoDB:', err);
 });
 
+
 // ออกแบบ schema
 let productSchema = new mongoose.Schema({
-    name: String,
-    price: Number,
     img: String,
-    discription: String
+    name: String,
+    gender: String,
+    age: Number,
+    university: String,
+    group: String,
+    ds: String,
+    warp: String
 });
 
 // สร้างโมเดล
