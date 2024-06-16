@@ -67,18 +67,26 @@ router.post('/insert', upload.single('img'), (req, res) => {
 router.get('/',async (req,res)=>{
     try {
         // Aggregation Pipeline เพื่อแยกกลุ่มข้อมูล
-        const data = await Product.aggregate([
+        const data1 = await Product.aggregate([
             {
                 $group: {
-                    _id: '$gender', // เปลี่ยน 'group' เป็นฟิลด์ที่คุณต้องการแยกกลุ่ม
+                    _id: '$university', // เปลี่ยน 'group' เป็นฟิลด์ที่คุณต้องการแยกกลุ่ม
+                    total: { $sum: 1 }
+                }
+            }
+        ]);
+        const data2 = await Product.aggregate([
+            {
+                $group: {
+                    _id: '$group', // เปลี่ยน 'group' เป็นฟิลด์ที่คุณต้องการแยกกลุ่ม
                     total: { $sum: 1 }
                 }
             }
         ]);
 
         // ส่งข้อมูลไปยัง template
-        console.log(data);
-        res.render('index', { data });
+        console.log(data1,data2);
+        res.render('index', { data1,data2 });
     } catch (err) {
         console.error(err);
         res.status(500).send('Error occurred while fetching data');

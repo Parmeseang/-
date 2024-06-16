@@ -22,55 +22,101 @@
 </div>
 <h1>Grouped Data by Gender</h1>
 
-  <ul>
-    <% data.forEach(item => { %>
-      <li><%= item._id %>: <%= item.total %></li>
-      <div class="grap" data-id="<%= item._id %>" data-total="<%= item.total %>"></div>
-    <% }) %>
-  </ul>
-  <canvas id="myChart" width="1000" height="100"></canvas>
+<ul>
+  <% data1.forEach(item => { %>
+    <li><%= item._id %>: <%= item.total %></li>
+    <div class="grap" data-id="<%= item._id %>" data-total="<%= item.total %>"></div>
+  <% }) %>
+</ul>
+<ul>
+  <% data2.forEach(item => { %>
+    <li><%= item._id %>: <%= item.total %></li>
+    <div class="grap2" data-id2="<%= item._id %>" data-total2="<%= item.total %>"></div>
+  <% }) %>
+</ul>
+<div class="garp1">
+  <canvas id="myChart" width="1000" height="400"></canvas>
+</div>
+<div class="garp2">
+  <canvas id="myChart2" width="1000" height="400"></canvas>
+</div>
 
-  <script>
-    // แสดงข้อมูลในตัวแปร data ใน Console
-    var grapElements = document.querySelectorAll('.grap');
-    var labels = [];
-    var counts = [];
+<script>
+  // แสดงข้อมูลในตัวแปร data ใน Console
+  var grapElements = document.querySelectorAll('.grap');
+  var labels = [];
+  var counts = [];
 
-    grapElements.forEach(function(grap) {
+  grapElements.forEach(function(grap) {
       labels.push(grap.getAttribute('data-id'));
-      counts.push(grap.getAttribute('data-total'));
-    });
+      counts.push(parseInt(grap.getAttribute('data-total')));
+  });
 
-    // ตรวจสอบข้อมูลที่ดึงมาได้
-    console.log(labels, counts);
+  // ตรวจสอบข้อมูลที่ดึงมาได้
+  console.log(labels, counts);
 
-    // ดึงข้อมูลจากตัวแปร JavaScript และสร้างกราฟด้วย Chart.js
-    const ctx = document.getElementById('myChart').getContext('2d');
-
-    // สร้างกราฟแบบแท่ง
-    new Chart(ctx, {
+  // ดึงข้อมูลจากตัวแปร JavaScript และสร้างกราฟด้วย Chart.js
+  const ctx = document.getElementById('myChart').getContext('2d');
+  
+  // สร้างกราฟแบบแท่ง
+  new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: labels,
-        datasets: [{
-          label: '# of Genders',
-          data: counts,
-          backgroundColor: 'rgba(255, 99, 132, 0.2)',
-          borderColor: 'rgba(255, 99, 132, 1)',
-          borderWidth: 1
-        }]
+          labels: labels,
+          datasets: [{
+              label: '# of Genders',
+              data: counts,
+              backgroundColor: 'rgba(255, 99, 132, 0.2)',
+              borderColor: 'rgba(255, 99, 132, 1)',
+              borderWidth: 1
+          }]
       },
       options: {
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
-        }
+          scales: {
+              y: {
+                  beginAtZero: true
+              }
+          }
       }
-    });
-  </script>
+  });
+
+  // ข้อมูลสำหรับกราฟที่สอง
+  var grap2Elements = document.querySelectorAll('.grap2');
+  var newLabels = [];
+  var newCounts = [];
+
+  grap2Elements.forEach(function(grap2) {
+      newLabels.push(grap2.getAttribute('data-id2'));
+      newCounts.push(parseInt(grap2.getAttribute('data-total2')));
+  });
+
+  // ตรวจสอบข้อมูลชุดใหม่ที่ดึงมาได้
+  console.log(newLabels, newCounts);
+
+  // สร้างกราฟแบบแท่งที่สอง (ตัวอย่างเป็นกราฟเส้น)
+  const ctx2 = document.getElementById('myChart2').getContext('2d');
+  new Chart(ctx2, {
+      type: 'bar',
+      data: {
+          labels: newLabels,
+          datasets: [{
+              label: 'Line Graph Example',
+              data: newCounts,
+              backgroundColor: 'rgba(54, 162, 235, 0.2)',
+              borderColor: 'rgba(54, 162, 235, 1)',
+              borderWidth: 1
+          }]
+      },
+      options: {
+          scales: {
+              y: {
+                  beginAtZero: true
+              }
+          }
+      }
+  });
+</script>
+
 
 </body>
     <script src="js/drop.js"></script>

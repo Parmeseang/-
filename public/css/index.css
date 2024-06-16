@@ -243,6 +243,11 @@ form {
 .off{
     display: none;
 }
+.garp1,.garp2{
+    margin: 0 auto;
+    width: 80%;
+    height: 400px;
+}
 /* ส่วนของForm */
 
 .input-container {
