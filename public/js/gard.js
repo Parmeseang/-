@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
             popupGroup.innerHTML = `<p>คณะ:</p><p>${group}</p>`;
             popupImg.src = img;
             popupgender.innerHTML = `<p>เพศ:</p><p>${gender}</p>`;
-            popupage.innerHTML = `<p>อายุ:</p><p>${age}</p>`;
+            popupage.innerHTML = `<p>เลขที่:</p><p>${age}</p>`;
             popupds.innerHTML = `<p>คำอธิบายตัวเอง:</p><p>${ds}</p>`;
             popupwarp.innerHTML = `<a href="https://www.instagram.com/${warp}/" target="_blank"><img src="images/home/pngegg.png" alt="Icon"></a>`;
 

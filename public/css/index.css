@@ -38,8 +38,23 @@ nav p {
 
 .box-nave{
     /* background-color: aqua; */
+    display: flex;
+    align-items: center;
     width: 100%;
 }
+.countdown {
+    width: 100%;
+    justify-items: center;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  .hny {
+    font-family: Arial, sans-serif;
+    font-size: 2em;
+    color: red;
+  }
 
 .btn-bar{
     font-size: 25px;
