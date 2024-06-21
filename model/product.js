@@ -2,15 +2,18 @@ const mongoose = require('mongoose');
 
 // เชื่อม MongoDB
 const dburl = 'mongodb://localhost:27017/productDB';
-mongoose.connect(dburl, {
+const connection = mongoose.createConnection(dburl, {
     useNewUrlParser: true,
     useUnifiedTopology: true
-}).then(() => {
-    console.log('Connected to MongoDB');
-}).catch(err => {
-    console.error('Error connecting to MongoDB:', err);
 });
 
+connection.on('connected', () => {
+    console.log('Connected to MongoDB');
+});
+
+connection.on('error', (err) => {
+    console.error('Error connecting to MongoDB:', err);
+});
 
 // ออกแบบ schema
 let productSchema = new mongoose.Schema({
@@ -25,7 +28,7 @@ let productSchema = new mongoose.Schema({
 });
 
 // สร้างโมเดล
-let Product = mongoose.model("Product", productSchema);
+let Product = connection.model("Product", productSchema);
 
 // ส่งออก
 module.exports = Product;

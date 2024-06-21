@@ -13,7 +13,7 @@ app.use(express.static(path.join(__dirname,'public')))
 
 
 
-const port = 5000
+const port = 3000
 app.listen(port,()=>{
     console.log(`run in port ${port}`)
 })

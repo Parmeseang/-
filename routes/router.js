@@ -2,6 +2,7 @@
 const express = require('express')
 const router = express.Router()
 const Product = require('../model/product')
+const GardModel  = require('../model/gard')
 // อัพโหลดไฟล
 const path = require('path');
 const multer = require('multer')
@@ -63,35 +64,56 @@ router.post('/insert', upload.single('img'), (req, res) => {
         res.redirect('/');
     });
 });
+router.post('/ingard', (req, res) => {
 
-router.get('/',async (req,res)=>{
+    console.log(req.body);
+    let raw = new GardModel({
+        name: req.body.name,
+        comment: req.body.cm
+    });
+    
+    console.log(raw);
+    GardModel.savegard(raw, (err) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).send({ message: 'Error saving gard' });
+        }
+        res.redirect('/');
+    });
+});
+
+router.get('/', async (req, res) => {
     try {
         // Aggregation Pipeline เพื่อแยกกลุ่มข้อมูล
         const data1 = await Product.aggregate([
             {
                 $group: {
-                    _id: '$university', // เปลี่ยน 'group' เป็นฟิลด์ที่คุณต้องการแยกกลุ่ม
+                    _id: '$university',
                     total: { $sum: 1 }
                 }
             }
-        ]);
+        ]).catch(err => { throw new Error('Error aggregating data1: ' + err.message); });
+
         const data2 = await Product.aggregate([
             {
                 $group: {
-                    _id: '$group', // เปลี่ยน 'group' เป็นฟิลด์ที่คุณต้องการแยกกลุ่ม
+                    _id: '$group',
                     total: { $sum: 1 }
                 }
             }
-        ]);
+        ]).catch(err => { throw new Error('Error aggregating data2: ' + err.message); });
+
+        const gardData = await GardModel.find({}).catch(err => { throw new Error('Error finding gardData: ' + err.message); });
 
         // ส่งข้อมูลไปยัง template
-        console.log(data1,data2);
-        res.render('index', { data1,data2 });
+        console.log(data1, data2, gardData);
+        res.render('index', { data1, data2, data: gardData });
     } catch (err) {
-        console.error(err);
+        console.error('Error occurred:', err);
         res.status(500).send('Error occurred while fetching data');
     }
-})
+});
+
 
 router.get('/create',(req,res)=>{
  
@@ -110,29 +132,9 @@ router.get('/edit',(req,res)=>{
  
     res.render('edit')
 })
-// router.post('/insert', upload.single('img'), (req, res) => {
-   
-    
-//     console.log(req.file.filename);
-//     let raw = new Product({
-//         name: req.body.name,
-//         price: req.body.price,
-//         img: req.file.filename,
-//         gender: req.body.gender,
-//         age: req.body.age,
-//         university: req.body.university,
-//         group: req.body.group,
-//         discription: req.body.discription
-//     });
-    
-//     console.log(raw);
-//     Product.saveProduct(raw, (err) => {
-//         if (err) {
-//             console.log(err);
-//             return res.status(500).send({ message: 'Error saving product' });
-//         }
-//         res.redirect('/');
-//     });
-// });
+router.get('/gard',(req,res)=>{
+ 
+    res.render('gard')
+})
 
 module.exports = router

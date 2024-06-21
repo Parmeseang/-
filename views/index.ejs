@@ -67,6 +67,25 @@
     <span id="sec3"></span> Seconds
   </div>
   <div id="hny3" class="hny"></div>
+  <h1>gard form heart</h1>
+  <p id="pppppp">คล้ายๆngl <a href="/gard">เพิ่มการ์ดของคุณ</a></p>
+  
+  <div class="gard">
+ 
+      <% data.forEach(function(gard) { %>
+      <div class="gardmsg">
+        <p id="name">
+          &#183; <%= gard.name %>
+      </p>
+      <div class="massage">
+      <p id="msg">
+        <%= gard.comment %>
+      </p>
+    </div>
+      </div>
+      <% }); %>
+  </div>
+
 
 <script>
   // แสดงข้อมูลในตัวแปร data ใน Console

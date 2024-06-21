@@ -66,7 +66,7 @@ nav p {
 .dropdown{
     position: absolute;
     right: 10px;
-    height: 240px;
+    height: 270px;
     width: 300px;
     display: flex;
     justify-content: center;
@@ -262,6 +262,50 @@ form {
     margin: 0 auto;
     width: 80%;
     height: 400px;
+}
+#pppppp a{
+    padding: 5px;
+    background-color: rgba(213, 148, 221, 0.863);
+    text-decoration: none;
+    border-radius: 9px;
+    color: #ffffff;
+}
+.gard{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    margin: 30px;
+    place-items: center; /* จัดให้เนื้อหาตรงกลางทั้งแกน x และ y */
+}
+.gardmsg{
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px 0 #aea5c2;
+    border-radius: 6px;
+    padding: 10px;
+}
+#msg {
+    padding: 5px;
+    text-align: center; /* จัดให้อยู่ตรงกลางทั้งแกน x */
+    border-radius: 6px;
+}
+#name{
+    font-size: large;
+    font-weight: 500;
+    padding: 5px;
+    background-color: #e2e2e2;
+    border-radius: 6px;
+}
+.massage{
+    margin-top: 10px;
+    height: 90%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 /* ส่วนของForm */
 
