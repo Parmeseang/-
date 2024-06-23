@@ -9,6 +9,7 @@ require('dotenv').config();
 
 
 router.use(bodyParser.json());
+router.use(bodyParser.urlencoded({ extended: true })); // Add this line
 const JWT_SECRET = process.env.JWT_SECRET;
 
 // อัพโหลดไฟล
@@ -43,68 +44,65 @@ const upload = multer({
     limits: { fileSize: 1024 * 1024 * 5 }, // จำกัดขนาดไฟล์ 5MB
     fileFilter: fileFilter
 });
-// ตัวอย่างฐานข้อมูลผู้ใช้
+// ฐานข้อมูลผู้ใช้
 const users = [
-    { id: 1, username: 'boss', password: 'password1', role: 'user' },
-    { id: 2, username: '2', password: 'password1', role: 'user' }
+    { id: 1, username: 'boss', password: 'sj1112', role: 'user' },
+    { id: 2, username: '2', password: 'sj1112', role: 'user' }
 ];
 
 // Route สำหรับการล็อกอินและสร้าง JWT
 router.post('/login', (req, res) => {
     const { username, password } = req.body;
 
-    const code = req.body.code;
-    const name = req.body.name;
-    if (code === 'your_secret_code' && name === 'your_student_number') {
-        // ถ้าข้อมูลถูกต้อง
-        res.send('Login successful');
-      } else {
-        // ถ้าข้อมูลไม่ถูกต้อง
-        res.status(401).send('Login failed');
-      }
-    // ค้นหาผู้ใช้ในฐานข้อมูล
+    console.log('Received username:', username);
+    console.log('Received password:', password);
+
     const user = users.find(u => u.username === username && u.password === password);
 
-    if (!user) {
-        return res.status(401).json({ message: 'การยืนยันตัวตนล้มเหลว. ไม่พบผู้ใช้งาน.' });
+    if (user) {
+        const token = jwt.sign({ userId: user.id, username: user.username, role: user.role }, JWT_SECRET, { expiresIn: '1h' });
+        res.json({ token });
+    } else {
+        res.status(401).json({ message: 'Invalid credentials' });
     }
-
-    // สร้าง JWT พร้อมข้อมูลผู้ใช้
-    const token = jwt.sign({ userId: user.id, username: user.username }, JWT_SECRET, { expiresIn: '2h' });
-
-    // ส่ง JWT กลับเป็น response
-    res.json({ token });
 });
-
+    
+// Middleware สำหรับตรวจสอบและยืนยัน Token
 const authenticateToken = (req, res, next) => {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
-
+    
     if (!token) {
-        return res.status(401).json({ JWT_SECRET, message: 'ไม่พบ Token ใน header Authorization'  });
+        console.log(token)
+        console.log('ไม่พบ Token ใน header Authorization');
+        return res.status(401).json({ message: 'ไม่พบ Token ใน header Authorization' });
     }
 
     try {
         const decoded = jwt.verify(token, JWT_SECRET);
         req.user = decoded; // เก็บข้อมูลผู้ใช้ที่ถูก decode จาก token ไว้ใน req.user
+        console.log('Token verified:', decoded);
         next(); // ผ่าน middleware ไปต่อ
     } catch (error) {
-        console.error('Token verification failed:', error);
-        return res.status(401).json({ JWT_SECRET, message: 'การยืนยันตัวตนล้มเหลว. Token ไม่ถูกต้องหรือหมดอายุ' });
+        console.log('การยืนยันตัวตนล้มเหลว:', error.message);
+        // ดัก error ที่เกิดขึ้นจากการ verify token ที่ไม่ถูกต้อง
+        return res.status(401).json({ message: 'การยืนยันตัวตนล้มเหลว. Token ไม่ถูกต้องหรือหมดอายุ' });
     }
 };
 
-// เส้นทาง myprofile ที่ต้องการ JWT สำหรับการเข้าถึง
 router.get('/myprofile', authenticateToken, (req, res) => {
-    // ในกรณีนี้ req.user จะเป็นข้อมูลผู้ใช้ที่ถอดรหัสได้จาก JWT
-    const userProfile = users.find(u => u.id === req.user.userId);
+    console.log('Authenticated user:', req.user);
+    const user = users.find(u => u.id === req.user.userId);
 
-    if (!userProfile) {
-        return res.status(404).json({ message: 'ไม่พบโปรไฟล์ผู้ใช้' });
+    if (user) {
+        res.json({ userProfile: user });
+    } else {
+        res.status(404).json({ message: 'User not found' });
     }
-
-    res.json({ userProfile });
 });
+// router.get('/myprofile',(req, res) => {
+//     res.render('myprofile')
+// });
 
 // กำหนดเส้นทางสำหรับการอัพโหลดไฟล์
 router.post('/insert', upload.single('img'), (req, res) => {

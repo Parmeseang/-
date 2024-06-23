@@ -10,9 +10,36 @@
 </head>
 <body>
     <%- include('navbar')%>
-    <div class="conteaner">
-    
-</div>
-</body>
-    <script src="js/drop.js"></script>
+    <h1>My Profile</h1>
+    <div id="profile-container"></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                alert('Token ไม่ถูกต้องหรือหมดอายุ');
+                window.location.href = '/login'; // Redirect to login page
+                return;
+            }
+
+            try {
+                const response = await axios.get('/myprofile', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                const data = response.data;
+                if (response.status === 200) {
+                    document.getElementById('profile-container').innerText = JSON.stringify(data.userProfile, null, 2);
+                } else {
+                    alert(data.message);
+                    window.location.href = '/login'; // Redirect to login page
+                }
+            } catch (err) {
+                console.error('Error:', err);
+                alert('Something went wrong. Please try again.');
+            }
+        });
+    </script>
+
 </html>
