@@ -11,35 +11,26 @@
 <body>
     <%- include('navbar')%>
     <h1>My Profile</h1>
-    <div id="profile-container"></div>
-    <script>
-        document.addEventListener('DOMContentLoaded', async () => {
-            const token = localStorage.getItem('token');
-            if (!token) {
-                alert('Token ไม่ถูกต้องหรือหมดอายุ');
-                window.location.href = '/login'; // Redirect to login page
-                return;
-            }
-
-            try {
-                const response = await axios.get('/myprofile', {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-
-                const data = response.data;
-                if (response.status === 200) {
-                    document.getElementById('profile-container').innerText = JSON.stringify(data.userProfile, null, 2);
-                } else {
-                    alert(data.message);
-                    window.location.href = '/login'; // Redirect to login page
-                }
-            } catch (err) {
-                console.error('Error:', err);
-                alert('Something went wrong. Please try again.');
-            }
-        });
-    </script>
-
+    <div id="profile-container">
+        <div class="mamy">
+        <div class="my1">
+            <div class="picter"><img src="images\products\1716352796907-107566660.jpg" alt=""></div>
+            <div class="name"><p>นาย รัฐศาสตร์ สุดาปัน</p></div>
+            <div class="caption"><p>"หลอนๆหมอนอยู่ไหน"</p></div>
+            <div class="button" onclick="slide()"> </div>
+        </div>
+        <div class="my2" id="mypage2">
+            <div class="mydata">
+                <h1>ข้อมูลส่วนตัว</h1>
+                <p>Your role: <%= userProfile.id%></p>
+            </div>
+            <div class="warp">
+                <h1>วาร์ป</h1>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="js/drop.js"></script>
+<script src="js/profile"></script>
 </html>

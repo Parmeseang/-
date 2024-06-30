@@ -2,21 +2,94 @@
     <p>ทับหนึ่ง</p>
     <div class="box-nave">
     <ul class="navbar-nav">
-        <li><a href="/">home</a></li>
-        <li><a href="/profileroom">profile ทับหนึ่ง</a></li>
-        <li><a href="/myprofile">my profile</a></li>
-        <li><a href="/create">create profile</a></li>
-        <li><a href="/gard">send gard</a></li>
+      <li><a href="/home">home</a></li>
+      <li><a href="#" onclick="proom()">profile ทับหนึ่ง</a></li>
+      <li><a href="#" onclick="myp()">my profile</a></li>
+      <li><a href="#" onclick="create()">create profile</a></li>
+      <li><a href="#" onclick="gard()">send gard</a></li>
         <div class="btn-bar" onclick="toggleDropdown()"><i class="fa-solid fa-bars" ></i></div>
     </ul>
   </div>
 </nav>
 <div class="dropdown" id="myDropdown">
   <ul>
-    <li><a href="/">home</a></li>
-    <li><a href="/profileroom">profile ทับหนึ่ง</a></li>
-    <li><a href="/myprofile">my profile</a></li>
-    <li><a href="/create">create profile</a></li>
-    <li><a href="/gard">send gard</a></li>
+    <li><a href="/home">home</a></li>
+    <li><a href="#" onclick="proom()">profile ทับหนึ่ง</a></li>
+    <li><a href="#" onclick="myp()">my profile</a></li>
+    <li><a href="#" onclick="create()">create profile</a></li>
+    <li><a href="#" onclick="gard()">send gard</a></li>
 </ul>
 </div>
+
+<script>
+  function proom() {
+    const token = localStorage.getItem('token');
+    console.log(localStorage.getItem('token')); // ควรจะแสดง token ที่เก็บอยู่
+    if (token) {
+        let url = "http://localhost:3000/profileroom?token=" + token;
+        console.log(url); // ตรวจสอบ URL ว่ามี token หรือไม่
+        window.location.href = url;
+    } else {
+        console.error('Token not found');
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Token not found. Please login first.'
+        });
+    }
+}
+</script>
+<script>
+  function create() {
+    const token = localStorage.getItem('token');
+    console.log(localStorage.getItem('token')); // ควรจะแสดง token ที่เก็บอยู่
+    if (token) {
+        let url = "http://localhost:3000/create?token=" + token;
+        console.log(url); // ตรวจสอบ URL ว่ามี token หรือไม่
+        window.location.href = url;
+    } else {
+        console.error('Token not found');
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Token not found. Please login first.'
+        });
+    }
+}
+</script>
+<script>
+  function gard() {
+    const token = localStorage.getItem('token');
+    console.log(localStorage.getItem('token')); // ควรจะแสดง token ที่เก็บอยู่
+    if (token) {
+        let url = "http://localhost:3000/gard?token=" + token;
+        console.log(url); // ตรวจสอบ URL ว่ามี token หรือไม่
+        window.location.href = url;
+    } else {
+        console.error('Token not found');
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Token not found. Please login first.'
+        });
+    }
+}
+</script>
+<script>
+  function myp() {
+    const token = localStorage.getItem('token');
+    console.log(localStorage.getItem('token')); // ควรจะแสดง token ที่เก็บอยู่
+    if (token) {
+        let url = "http://localhost:3000/myprofile?token=" + token;
+        console.log(url); // ตรวจสอบ URL ว่ามี token หรือไม่
+        window.location.href = url;
+    } else {
+        console.error('Token not found');
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Token not found. Please login first.'
+        });
+    }
+}
+</script>

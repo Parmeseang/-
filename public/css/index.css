@@ -89,9 +89,7 @@ nav p {
     color: black;
     font-size: 20px;
 }
-.chang{
-    display: block;
-}
+
 .conteaner{
     height: 100dvh;
     width: 100%;
@@ -316,6 +314,73 @@ form {
     align-items: center;
     justify-content: center;
 }
+
+/* myprofile */
+#profile-container{
+    height: 100dvh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.mamy{
+    height: 900px;
+    background-color: #aea5c2;
+    display: flex;
+    border-radius: 4px;
+}
+.my1{
+    position: relative;
+    width: 680px;
+    margin: 15px 12.5px 15px 15px;
+    background-color: #ffffff;
+    border-radius: 24px;
+    /* display:grid; */
+    /* justify-content: center; */
+    z-index: +14;
+}
+.my2{
+    width: 680px;
+    margin: 15px 15px 15px 12.5px;
+    background: #ffffff;
+    border-radius: 24px;
+    display: none;
+}
+.picter img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 22px;
+}
+.picter {
+    margin: 50px auto;
+    width: 500px;
+    height: 480px;
+
+}
+.name p{
+    text-align: center;
+    font-size: 42px;
+    font-weight: 500;
+}
+.caption p{
+    color: #ac73a9;
+    margin-top: 60px;
+    text-align: center;
+    font-size: 42px;
+}
+.button{
+    width: 50px;
+    height: 80px;
+    background-color: rgb(138, 138, 138);
+    position: absolute;
+    right: 0;
+    top:50%;
+    border-radius: 50% 0 0  50%;
+    z-index: +13;
+}
+.chang{
+    display: block;
+}
 /* ส่วนของForm */
 
 .input-container {
@@ -334,6 +399,15 @@ form {
     outline: none;
   }
   .input-container input[type="password"] {
+    font-size: 20px;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    padding: 3px 0;
+    background-color: transparent;
+    outline: none;
+  }
+  .input-container input[type="number"] {
     font-size: 20px;
     width: 100%;
     border: none;
@@ -364,6 +438,12 @@ form {
     font-size: 16px;
     color: #333;
   }
+  .input-container input[type="number"]:focus ~ .label,
+  .input-container input[type="number"]:valid ~ .label {
+    top: -20px;
+    font-size: 16px;
+    color: #333;
+  }
   .input-container .underline {
     position: absolute;
     bottom: 0;
@@ -383,6 +463,13 @@ form {
   .input-container input[type="password"]:valid ~ .underline {
     transform: scaleX(1);
   }
+  .input-container input[type="number"]:focus ~ .underline,
+  .input-container input[type="number"]:valid ~ .underline {
+    transform: scaleX(1);
+  }
+
+
+
 @media only screen and (max-width: 1000px) {
     .conteaner{
         height: 100dvh;

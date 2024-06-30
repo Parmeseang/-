@@ -46,21 +46,53 @@ const upload = multer({
 });
 // ฐานข้อมูลผู้ใช้
 const users = [
-    { id: 1, username: 'boss', password: 'sj1112', role: 'user' },
-    { id: 2, username: '2', password: 'sj1112', role: 'user' }
+    { id: 1,  password: 'sj1112', role: 'user' },
+    { id: 2,  password: 'sj1112', role: 'user' },
+    { id: 3,  password: 'sj1112', role: 'user' },
+    { id: 4,  password: 'sj1112', role: 'user' },
+    { id: 5,  password: 'sj1112', role: 'user' },
+    { id: 6,  password: 'sj1112', role: 'user' },
+    { id: 7,  password: 'sj1112', role: 'user' },
+    { id: 8,  password: 'sj1112', role: 'user' },
+    { id: 9,  password: 'sj1112', role: 'user' },
+    { id: 10,  password: 'sj1112', role: 'user' },
+    { id: 11,  password: 'sj1112', role: 'user' },
+    { id: 12,  password: 'sj1112', role: 'user' },
+    { id: 13,  password: 'sj1112', role: 'user' },
+    { id: 14,  password: 'sj1112', role: 'user' },
+    { id: 15,  password: 'sj1112', role: 'user' },
+    { id: 16,  password: 'sj1112', role: 'user' },
+    { id: 17,  password: 'sj1112', role: 'user' },
+    { id: 18,  password: 'sj1112', role: 'user' },
+    { id: 19,  password: 'sj1112', role: 'user' },
+    { id: 20,  password: 'sj1112', role: 'user' },
+    { id: 21,  password: 'sj1112', role: 'user' },
+    { id: 22,  password: 'sj1112', role: 'user' },
+    { id: 23,  password: 'sj1112', role: 'user' },
+    { id: 24,  password: 'sj1112', role: 'user' },
+    { id: 25,  password: 'sj1112', role: 'user' },
+    { id: 26,  password: 'sj1112', role: 'user' },
+    { id: 27,  password: 'sj1112', role: 'user' },
+    { id: 28,  password: 'sj1112', role: 'user' },
+    { id: 29,  password: 'sj1112', role: 'user' },
+    { id: 30,  password: 'sj1112', role: 'user' },
+    { id: 31,  password: 'sj1112', role: 'user' },
+    { id: 32,  password: 'sj1112', role: 'user' },
+    { id: 33,  password: 'sj1112', role: 'user' },
+    { id: 34,  password: 'sj1112', role: 'user' },
 ];
 
 // Route สำหรับการล็อกอินและสร้าง JWT
 router.post('/login', (req, res) => {
-    const { username, password } = req.body;
+    const { id, password } = req.body;
 
-    console.log('Received username:', username);
+    console.log('Received id:', id);
     console.log('Received password:', password);
 
-    const user = users.find(u => u.username === username && u.password === password);
+    const user = users.find(u => u.id === parseInt(id) && u.password === password);
 
     if (user) {
-        const token = jwt.sign({ userId: user.id, username: user.username, role: user.role }, JWT_SECRET, { expiresIn: '1h' });
+        const token = jwt.sign({ userId: user.id }, JWT_SECRET, { expiresIn: '1h' });
         res.json({ token });
     } else {
         res.status(401).json({ message: 'Invalid credentials' });
@@ -69,13 +101,15 @@ router.post('/login', (req, res) => {
     
 // Middleware สำหรับตรวจสอบและยืนยัน Token
 const authenticateToken = (req, res, next) => {
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
-    
+    // const authHeader = req.headers['authorization'];
+    // const token = authHeader && authHeader.split(' ')[1];
+    token = req.query.token;
+    console.log(req.token)
     if (!token) {
-        console.log(token)
+        // console.log(token)
+        
         console.log('ไม่พบ Token ใน header Authorization');
-        return res.status(401).json({ message: 'ไม่พบ Token ใน header Authorization' });
+        return res.render('login')
     }
 
     try {
@@ -86,20 +120,44 @@ const authenticateToken = (req, res, next) => {
     } catch (error) {
         console.log('การยืนยันตัวตนล้มเหลว:', error.message);
         // ดัก error ที่เกิดขึ้นจากการ verify token ที่ไม่ถูกต้อง
-        return res.status(401).json({ message: 'การยืนยันตัวตนล้มเหลว. Token ไม่ถูกต้องหรือหมดอายุ' });
+        return res.render('login')
     }
 };
 
-router.get('/myprofile', authenticateToken, (req, res) => {
+router.get('/myprofile', authenticateToken, async (req, res) => {
     console.log('Authenticated user:', req.user);
-    const user = users.find(u => u.id === req.user.userId);
 
-    if (user) {
-        res.json({ userProfile: user });
-    } else {
-        res.status(404).json({ message: 'User not found' });
+    try {
+        // ค้นหาผู้ใช้ใน array users โดยใช้ userId ที่ได้รับจาก token
+        const user = users.find(u => u.id === req.user.userId);
+        let us = user.id
+        console.log('เลขที:',us);
+        if (!us) {
+            console.error('User not found:', us);
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // ตรวจสอบว่าผู้ใช้มีฟิลด์ age และมีค่าเป็น Number
+        if (typeof us !== 'number') {
+            console.error('User age is not a number:', us);
+            return res.status(400).json({ message: 'Invalid user age' });
+        }
+
+        // ค้นหาข้อมูลจาก Product collection โดยใช้เงื่อนไข age ที่ตรงกับ user
+        const product = await Product.findOne({ age: us });
+        if (!product) {
+            console.error('Product not found for age:', us);
+            return res.status(404).json({ message: 'Product not found' });
+        }
+
+        console.log({ userProfile: user, productDetails: product });
+        res.render('myprofile', { userProfile: user, productDetails: product });
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ message: 'Internal server error' });
     }
 });
+
 // router.get('/myprofile',(req, res) => {
 //     res.render('myprofile')
 // });
@@ -150,7 +208,7 @@ router.post('/ingard', (req, res) => {
     });
 });
 
-router.get('/', async (req, res) => {
+router.get('/home', async (req, res) => {
     try {
         // Aggregation Pipeline เพื่อแยกกลุ่มข้อมูล
         const data1 = await Product.aggregate([
@@ -175,7 +233,7 @@ router.get('/', async (req, res) => {
 
         // ส่งข้อมูลไปยัง template
         console.log(data1, data2, gardData);
-        res.render('index', { data1, data2, data: gardData });
+        res.render('home', { data1, data2, data: gardData });
     } catch (err) {
         console.error('Error occurred:', err);
         res.status(500).send('Error occurred while fetching data');
@@ -183,15 +241,19 @@ router.get('/', async (req, res) => {
 });
 
 
-router.get('/create',(req,res)=>{
+router.get('/create', authenticateToken,(req,res)=>{
  
     res.render('create')
+})
+router.get('/',(req,res)=>{
+ 
+    res.render('login')
 })
 router.get('/login',(req,res)=>{
  
     res.render('login')
 })
-router.get('/profileroom',(req,res)=>{
+router.get('/profileroom', authenticateToken,(req,res)=>{
     Product.find().exec((err,doc)=>{
         res.render('profileroom',{product:doc})
       })
@@ -200,7 +262,7 @@ router.get('/edit',(req,res)=>{
  
     res.render('edit')
 })
-router.get('/gard',(req,res)=>{
+router.get('/gard', authenticateToken,(req,res)=>{
  
     res.render('gard')
 })

@@ -1,5 +1,5 @@
 const countdownDates = [
-    { date: new Date("2024-08-20T08:00:00").getTime(), idPrefix: "1" },
+    { date: new Date("2024-08-03T08:00:00").getTime(), idPrefix: "1" },
     { date: new Date("2024-12-05T08:00:00").getTime(), idPrefix: "2" },
     { date: new Date("2025-04-17T08:00:00").getTime(), idPrefix: "3" }
   ];
