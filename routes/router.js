@@ -187,7 +187,7 @@ router.post('/insert', upload.single('img'), (req, res) => {
             console.log(err);
             return res.status(500).send({ message: 'Error saving product' });
         }
-        res.redirect('/');
+        res.redirect('/home');
     });
 });
 router.post('/ingard', (req, res) => {

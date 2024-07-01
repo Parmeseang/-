@@ -10,27 +10,33 @@
 </head>
 <body>
     <%- include('navbar')%>
-    <h1>My Profile</h1>
     <div id="profile-container">
         <div class="mamy">
         <div class="my1">
-            <div class="picter"><img src="images\products\1716352796907-107566660.jpg" alt=""></div>
-            <div class="name"><p>นาย รัฐศาสตร์ สุดาปัน</p></div>
-            <div class="caption"><p>"หลอนๆหมอนอยู่ไหน"</p></div>
+            <div class="picter"><img src="images\products\<%= productDetails.img%>" alt=""></div>
+            <div class="name"><p><%= productDetails.name%></p></div>
+            <div class="caption"><p>"<%= productDetails.ds%>"</p></div>
             <div class="button" onclick="slide()"> </div>
         </div>
         <div class="my2" id="mypage2">
             <div class="mydata">
                 <h1>ข้อมูลส่วนตัว</h1>
-                <p>Your role: <%= userProfile.id%></p>
+                <div class="inline"><p class="kumnum">name </p><p><%= productDetails.name%></p></div><hr>
+                <div class="inline"><p class="kumnum">gender </p><p><%= productDetails.gender%></p></div><hr>
+                <div class="inline"><p class="kumnum">want to </p><p><%= productDetails.university%></p></div><hr>
+                <div class="inline"><p class="kumnum">want to </p><p><%= productDetails.group%></p></div><hr>
             </div>
             <div class="warp">
                 <h1>วาร์ป</h1>
+                <a href="https://www.instagram.com/<%= productDetails.warp%>/" target="_blank"><img src="images/home/pngegg.png" alt="Icon"></a>
             </div>
         </div>
     </div>
 </div>
 </body>
+<script>
+
+</script>
 <script src="js/drop.js"></script>
 <script src="js/profile"></script>
 </html>
