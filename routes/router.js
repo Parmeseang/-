@@ -258,10 +258,42 @@ router.get('/profileroom', authenticateToken,(req,res)=>{
         res.render('profileroom',{product:doc})
       })
 })
-router.get('/edit',(req,res)=>{
- 
-    res.render('edit')
+router.post('/edit',(req,res)=>{
+    const edit = req.body.editid
+    console.log(edit)
+    Product.findOne({_id:edit}).exec((err,doc)=>{
+        console.log(doc)
+        res.render('edit',{product:doc})
+      })
 })
+router.post('/update', upload.single('img'), (req, res) => {
+   const updateid = req.body.update
+
+    let data = {
+        name: req.body.name,
+        warp: req.body.warp,
+        img: req.file ? req.file.filename :  req.body.imgb,
+        gender: req.body.gender,
+        age: req.body.age,
+        university: req.body.university,
+        group: req.body.group,
+        ds: req.body.ds
+    };
+
+    // ถ้ามีการอัพเดตรูปภาพใหม่ ให้ใช้รูปภาพใหม่
+    if (req.file) {
+        data.img = req.file.filename;
+    } else {
+        // ถ้าไม่มีการอัพเดตรูปภาพใหม่ ให้ใช้รูปภาพเดิม
+        data.img = req.body.imgb;
+    }
+    
+    console.log('ข้อมูลอัพเดต',data);
+    console.log('ไอดี',updateid);
+    Product.findByIdAndUpdate(updateid,data,{useFindAndModify:false}).exec(err=>{
+        res.redirect('/home')
+    });
+});
 router.get('/gard', authenticateToken,(req,res)=>{
  
     res.render('gard')

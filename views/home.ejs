@@ -14,62 +14,72 @@
     <div class="conteaner">
         <div class="sec1">
         <div class="p-61">
-            <h1>welcome 6/1</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo nostrum odio repudiandae minima, ipsa nam voluptatum facilis illum, at ducimus similique, quasi tempore nulla doloremque libero quisquam itaque ab pariatur.</p>
+            <h1>welcome 6/1</h1><br>
+            <p>เว็บไซส์นี้ผมตั้งใจจัดทำขึ้นเพื่อให้เพื่อนห้อง6/1สร้างโปรไฟล์ตัวเอง ได้ไอเดียจากครูประจำชั้นที่จะรวบรวมข้อมูลความต้องการศึกษาต่อ บวกกับต้อนนั้นอยากเขียนเว็บสร้างโปรไฟล์ตัวเองอยู่แล้วเลยคิดว่าทำให้ทั้งห้องเลยก็น่าสนุกดี</p>
         </div>
         <div class="img-room-index"></div>
     </div>
-</div>
-<h1>Grouped Data by Gender</h1>
+<div class="garp61">
 
-<ul>
+
+<ul style="display: none;">
   <% data1.forEach(item => { %>
     <li><%= item._id %>: <%= item.total %></li>
     <div class="grap" data-id="<%= item._id %>" data-total="<%= item.total %>"></div>
   <% }) %>
 </ul>
-<ul>
+<ul style="display: none;">
   <% data2.forEach(item => { %>
     <li><%= item._id %>: <%= item.total %></li>
     <div class="grap2" data-id2="<%= item._id %>" data-total2="<%= item.total %>"></div>
   <% }) %>
 </ul>
+<div class="k1">
+  <h2>มหาลัยที่สนใจ</h2>
 <div class="garp1">
-  <canvas id="myChart" width="1000" height="400"></canvas>
+  <canvas id="myChart" width="100%" height="100%"></canvas>
 </div>
+</div>
+<div class="k2">
 <div class="garp2">
-  <canvas id="myChart2" width="1000" height="400"></canvas>
+  <canvas id="myChart2" width="100%" height="100%"></canvas>
 </div>
-
+<h2>คณะที่สนใจ</h2>
+</div>
+</div>
+<div class="time61">
 <div id="countdown1" class="countdown">
     <h2>Netsat</h2>
-    <span id="days1"></span> Days 
-    <span id="hours1"></span> Hours 
-    <span id="min1"></span> Minutes 
-    <span id="sec1"></span> Seconds
+    <span id="days1">00</span> Days 
+    <span id="hours1">00</span> :
+    <span id="min1">00</span> : 
+    <span id="sec1">00</span> 
   </div>
   <div id="hny1" class="hny"></div>
   
   <div id="countdown2" class="countdown">
     <h2>tcas</h2>
-    <span id="days2"></span> Days 
-    <span id="hours2"></span> Hours 
-    <span id="min2"></span> Minutes 
-    <span id="sec2"></span> Seconds
+    <span id="days2"></span> Days
+    <span id="hours2"></span> :
+    <span id="min2"></span> :
+    <span id="sec2"></span> 
   </div>
   <div id="hny2" class="hny"></div>
 
   <div id="countdown3" class="countdown">
-    <h2>alevel</h2>
+    <h2>A-level</h2>
     <span id="days3"></span> Days 
-    <span id="hours3"></span> Hours 
-    <span id="min3"></span> Minutes 
-    <span id="sec3"></span> Seconds
+    <span id="hours3"></span> :
+    <span id="min3"></span> : 
+    <span id="sec3"></span>
   </div>
   <div id="hny3" class="hny"></div>
+</div>
+  <div class="gard61">
+    <div class="l">
   <h1>gard form heart</h1>
   <p id="pppppp">คล้ายๆngl <a href="#" onclick="gard()">เพิ่มการ์ดของคุณ</a></p>
-  
+</div>
   <div class="gard">
  
       <% data.forEach(function(gard) { %>
@@ -85,7 +95,8 @@
       </div>
       <% }); %>
   </div>
-
+</div>
+</div>
 
 <script>
   // แสดงข้อมูลในตัวแปร data ใน Console
@@ -118,12 +129,38 @@
           }]
       },
       options: {
-          scales: {
-              y: {
-                  beginAtZero: true
-              }
-          }
-      }
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            font: {
+                                family: 'Arial', // กำหนดฟอนต์สำหรับแกน y
+                                size: 14 // ขนาดฟอนต์สำหรับแกน y
+                            }
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: {
+                                family: 'Arial', // กำหนดฟอนต์สำหรับแกน x
+                                size: 14 // ขนาดฟอนต์สำหรับแกน x
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            font: {
+                                family: 'Arial', // กำหนดฟอนต์สำหรับ legend
+                                size: 14 // ขนาดฟอนต์สำหรับ legend
+                            }
+                        }
+                    },
+                }
+            }
   });
 
   // ข้อมูลสำหรับกราฟที่สอง
@@ -154,12 +191,38 @@
           }]
       },
       options: {
-          scales: {
-              y: {
-                  beginAtZero: true
-              }
-          }
-      }
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            font: {
+                                family: 'Arial', // กำหนดฟอนต์สำหรับแกน y
+                                size: 14 // ขนาดฟอนต์สำหรับแกน y
+                            }
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: {
+                                family: 'Arial', // กำหนดฟอนต์สำหรับแกน x
+                                size: 14 // ขนาดฟอนต์สำหรับแกน x
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            font: {
+                                family: 'Arial', // กำหนดฟอนต์สำหรับ legend
+                                size: 14 // ขนาดฟอนต์สำหรับ legend
+                            }
+                        }
+                    },
+                }
+            }
   });
 </script>
 

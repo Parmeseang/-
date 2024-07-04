@@ -8,7 +8,7 @@
 nav {
     display: flex;
     width: 100%;
-    background-color: beige;
+    background-color: rgb(211, 211, 211);
     
 }
 
@@ -42,14 +42,7 @@ nav p {
     align-items: center;
     width: 100%;
 }
-.countdown {
-    width: 100%;
-    justify-items: center;
-    text-align: center;
-    font-family: Arial, sans-serif;
-    font-size: 2em;
-    margin-bottom: 20px;
-  }
+
   .hny {
     font-family: Arial, sans-serif;
     font-size: 2em;
@@ -75,6 +68,7 @@ nav p {
     backdrop-filter: blur(5px);
     border-radius:7px ;
     display: none;
+    z-index: +999;
 }
 
 .dropdown li {
@@ -104,13 +98,22 @@ nav p {
 }
 
 .p-61{
-    background-color: azure;
-    width: 500px;
+    padding: 25px;
+    border-radius: 14px;
+    border: 2px solid rgb(167, 167, 167);
+    width: 700px;
+    height: 400px;
     margin: 0 100px;
 }
 .p-61 h1{
-    text-align: center;
+    color: rgb(129, 129, 129);
+    
 }
+.p-61 p{
+    color: rgb(0, 0, 0);
+
+}
+
 .img-room-index{
     margin: 60px 100px 0 0;
     width: 650px;
@@ -121,7 +124,7 @@ nav p {
 
 form {
     padding: 50px;
-    margin: 0 auto 0 auto;
+    margin: 30px auto 0 auto;
     width: 500px;
     background-color: #ffffff;
     box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.2);
@@ -258,9 +261,61 @@ form {
     display: none;
 }
 .garp1,.garp2{
+    position: relative;
     margin: 0 auto;
-    width: 80%;
-    height: 400px;
+    width: 700px;
+    height: 300px;
+}
+.k1,.k2{
+    margin: 50px auto;
+    width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.time61{
+    padding-top: 200px;
+    padding-bottom: 200px;
+    background-color: #2b2b2b;
+}
+.countdown {
+    margin-bottom: 50px;
+    color: white;
+    width: 100%;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 2em;
+    padding: 25px;
+}
+.countdown span{
+    font-size: 4em;
+    position: relative;
+    top: 30px;
+}
+.number-time{
+    display: flex;
+}
+#countdown1 h2{
+    color: #d4552e;
+}
+#countdown2 h2{
+    color: #02d0df;
+}
+
+.garp61{
+  margin-top: 200px;
+}
+.gard61{
+    width: 100%;
+}
+.l{
+    font-size: 2EM;
+    text-align: center;
+    width: 700px;
+    height: 150px;
+    margin: 50px auto;
 }
 #pppppp a{
     padding: 5px;
@@ -270,10 +325,11 @@ form {
     color: #ffffff;
 }
 .gard{
+    margin: 0 auto;
+    width: 1400px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto;
-    margin: 30px;
     place-items: center; /* จัดให้เนื้อหาตรงกลางทั้งแกน x และ y */
 }
 .gardmsg{
@@ -317,12 +373,14 @@ form {
 
 /* myprofile */
 #profile-container{
+    position: relative;
     height: 100dvh;
     width: 100%;
     display: flex;
     justify-content: center;
 }
 .mamy{
+    margin-top: 60px;
     height: 900px;
     background-color: #aea5c2;
     display: flex;
@@ -404,6 +462,21 @@ form {
 .warp a img{
     width: 100px;
 }
+.edit{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 100px;
+    padding: 0;
+    box-shadow: none;
+}
+.edit button{
+    color: #ffffff;
+    background-color: #bc7dff;
+    border: none;
+    padding: 10px;
+}
+
 .chang{
     display: block;
 }
@@ -493,7 +566,48 @@ form {
   .input-container input[type="number"]:valid ~ .underline {
     transform: scaleX(1);
   }
-
+  .custum-file-upload {
+    height: 200px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+    gap: 20px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #e8e8e8;
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0px 48px 35px -48px #e8e8e8;
+  }
+  
+  .custum-file-upload .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .custum-file-upload .icon svg {
+    height: 80px;
+    fill: #e8e8e8;
+  }
+  
+  .custum-file-upload .text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .custum-file-upload .text span {
+    font-weight: 400;
+    color: #e8e8e8;
+  }
+  
+  .custum-file-upload input {
+    display: none;
+  }
 
 
 @media only screen and (max-width: 1000px) {
@@ -519,5 +633,160 @@ form {
         margin: 60px auto 0 auto;
         width: 400px;
         height: 400px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .conteaner{
+        height: 100dvh;
+        width: 100%;
+        background-color: rgb(255, 255, 255);
+    }
+    .sec1{
+        width: 350px;
+    }
+    .p-61{
+        width: 350px;
+    }
+    .img-room-index{
+        margin: 60px auto 0 auto;
+        width: 300px;
+        height: 300px;
+    }
+    .garp61{
+        width: 350px;
+        margin: 200px auto;
+    }
+    .k1{
+        width: 350px;
+        display: flex;
+        flex-direction: column;
+    }
+    .k2{
+        width: 350px;
+        display: flex;
+        flex-direction: column-reverse;;
+    }
+    canvas {
+        display: block;
+        max-width: 350px;
+        max-height: 100%;
+        font-size: 10px;
+    }
+    .garp1, .garp2 {
+        position: relative;
+        margin: 0 auto;
+        width: 350px;
+        height: 200px;
+    }
+    .countdown{
+        font-size: .75em;
+    }
+    .countdown span {
+        font-size: 4em;
+        position: relative;
+        top: 12px;
+    }
+    .l {
+        font-size: .85EM;
+        text-align: center;
+        width: 200px;
+        height: 150px;
+        margin: 50px auto;
+    }
+    .gard {
+        margin: 0 auto;
+        width: 300px;
+        display: grid;
+        grid-template-columns: 1fr ;
+        grid-template-rows: auto;
+        place-items: center;
+    }
+    .gardmsg{
+        margin:  10px 0;
+    }
+    .nametag{
+        font-size: 7px;
+    }
+    .img-nametag{
+        margin-left: 10px;
+    }
+    .last-chil{
+        margin-right: 10px;
+    }
+    .img-nametag {
+        width: 70px;
+        height: 70px;
+        border-radius: 12px;
+    }
+    .img-nametag img {
+        width: 100%;
+        height: 70px;
+        object-fit: cover;
+        border-radius: 12px;
+    }
+    .nametag {
+        width: 90%;
+        height: 100px;
+        box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.2);
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 30px;
+    }
+    .my1 ,.my2 {
+        height: 615px;
+        width: 350px;
+        border-radius: 12px;
+    }
+    .my2 p{
+        font-size: 15px;
+    }
+    .picter  {
+        margin: 20px auto;
+        width: 300px;
+        height: 300px;
+    }
+    .picter img {
+        border-radius: 8px;
+    }
+    .mamy{
+        width: 375px;
+        height: 1200px;
+        flex-direction: column;
+    }
+    .button {
+        top: 70%;
+        width: 30px;
+        height: 50px;
+    }
+    .name p {
+        margin-top: 50px;
+        text-align: center;
+        font-size: 42px;
+        font-weight: 500;
+    }
+    .caption p {
+        color: #ac73a9;
+        margin-top: 80px;
+        text-align: center;
+        font-size: 32px;
+    }
+    .warp a img {
+        width: 50px;
+    }
+    .warp{
+        width: 80%;
+    }
+    form {
+        width: 350px;
+        background-color: #ffffff;
+        box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.2);
+    }
+    .custum-file-upload {
+        height: 200px;
+        width: 250px;
+        background-color: #ffffff;
     }
 }

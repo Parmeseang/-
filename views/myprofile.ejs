@@ -32,7 +32,12 @@
             </div>
         </div>
     </div>
+    <form action="/edit" method="post" class="edit">
+        <input type="hidden" name="editid" value="<%= productDetails._id%>">
+        <button type="submit" >Edit profile</button>
+    </form>
 </div>
+
 </body>
 <script>
 
